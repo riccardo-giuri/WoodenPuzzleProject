@@ -242,9 +242,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BasePrefab: {fileID: 4144968389431025048, guid: 2642c676495c7144b8d608f030732d05,
     type: 3}
-  height: 3
-  width: 2
+  height: 5
+  width: 5
   createBaseMap: 0
+  destroyBaseMap: 0
 --- !u!4 &789297863
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class map : MonoBehaviour
 
     [SerializeField]
     private bool createBaseMap;
+    [SerializeField]
+    private bool destroyBaseMap;
 
     private void Update()
     {
@@ -20,6 +22,11 @@ public class map : MonoBehaviour
         {
             BaseMap = CreateBaseMap();
             createBaseMap = false;
+        }
+        if(destroyBaseMap == true)
+        {
+            DestroyCurrentMap();
+            destroyBaseMap = false;
         }
     }
 
@@ -40,5 +47,16 @@ public class map : MonoBehaviour
         }
 
         return spawnarray;
+    }
+
+    public void DestroyCurrentMap()
+    {
+        if(BaseMap != null)
+        {
+            foreach (var tile in BaseMap)
+            {
+                DestroyImmediate(tile);
+            }
+        }
     }
 }
