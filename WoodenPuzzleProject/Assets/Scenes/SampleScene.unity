@@ -243,7 +243,7 @@ MonoBehaviour:
   BasePrefab: {fileID: 4144968389431025048, guid: 2642c676495c7144b8d608f030732d05,
     type: 3}
   height: 5
-  width: 5
+  width: 6
   createBaseMap: 0
   destroyBaseMap: 0
 --- !u!4 &789297863

@@ -32,21 +32,50 @@ public class map : MonoBehaviour
 
     public GameObject[,] CreateBaseMap() 
     {
-        GameObject[,] spawnarray = new GameObject[width, height]; 
-
-        for (int y = 0; y < height; y++)
+        if(BaseMap == null)
         {
-            for (int x = 0; x < width; x++)
-            {               
-                GameObject cube = Instantiate(BasePrefab,new Vector3(x, 0, y), Quaternion.identity, this.transform);
-                cube.GetComponent<Tile>().GridX = x;
-                cube.GetComponent<Tile>().GridY = y;
-                cube.name = "tile" + (y * width + x);
-                spawnarray[x, y] = cube;
-            }
-        }
+            GameObject[,] spawnarray = new GameObject[width, height];
 
-        return spawnarray;
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    GameObject cube = Instantiate(BasePrefab, new Vector3(x, 0, y), Quaternion.identity, this.transform);
+                    cube.GetComponent<Tile>().GridX = x;
+                    cube.GetComponent<Tile>().GridY = y;
+                    cube.name = "tile" + (y * width + x);
+                    spawnarray[x, y] = cube;
+                }
+            }
+
+            return spawnarray;
+        }
+        else
+        {
+            if(BaseMap.GetLength(0) != width || BaseMap.GetLength(1) != height)
+            {
+                DestroyCurrentMap();
+
+                GameObject[,] spawnarray = new GameObject[width, height];
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        GameObject cube = Instantiate(BasePrefab, new Vector3(x, 0, y), Quaternion.identity, this.transform);
+                        cube.GetComponent<Tile>().GridX = x;
+                        cube.GetComponent<Tile>().GridY = y;
+                        cube.name = "tile" + (y * width + x);
+                        spawnarray[x, y] = cube;
+                    }
+                }
+
+                return spawnarray;
+            }
+
+            return BaseMap;
+        }
+        
     }
 
     public void DestroyCurrentMap()
@@ -58,5 +87,7 @@ public class map : MonoBehaviour
                 DestroyImmediate(tile);
             }
         }
+
+        BaseMap = null;
     }
 }
