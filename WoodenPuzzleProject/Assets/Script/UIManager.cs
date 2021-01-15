@@ -10,10 +10,9 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(n);
     }
 
-    public void ActiveUI(GameObject ToActive, GameObject ToDeactive)
+    public void QuitGame()
     {
-        ToDeactive.SetActive(false);
-        ToActive.SetActive(true);
+        Application.Quit();
     }
 
 }
