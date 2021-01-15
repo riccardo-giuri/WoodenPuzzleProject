@@ -6,15 +6,15 @@ using UnityEngine;
 public class map : MonoBehaviour
 {
     [SerializeField]
-    private GameObject BasePrefab;
-    private GameObject[,] BaseMap;
+    public GameObject BasePrefab;
+    public GameObject[,] BaseMap;
     public int height;
     public int width;
 
     [SerializeField]
-    private bool createBaseMap;
+    public bool createBaseMap;
     [SerializeField]
-    private bool destroyBaseMap;
+    public bool destroyBaseMap;
 
     private void Update()
     {
