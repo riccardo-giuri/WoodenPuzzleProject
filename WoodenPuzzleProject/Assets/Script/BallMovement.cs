@@ -27,7 +27,7 @@ public class BallMovement : MonoBehaviour
             Acceleration = Quaternion.Euler(90, 0, 0) * Acceleration * speed;
         }
 
-        rb.AddForce(Acceleration);
+        rb.AddForce(new Vector3(Input.acceleration.x, 0f, Input.acceleration.y) * speed);
 
     }
 }
