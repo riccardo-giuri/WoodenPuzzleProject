@@ -19,7 +19,7 @@ public class WoodenPuzzleMapCreator : map
 
     private void Awake()
     {
-        
+
     }
 
     // Start is called before the first frame update
@@ -55,33 +55,54 @@ public class WoodenPuzzleMapCreator : map
         }
     }
 
+    //void BuildLevelWithColorMap()
+    //{
+    //    if(BaseMap != null)
+    //    {
+    //        foreach (var tile in BaseMap)
+    //        {
+    //            Color tileColor = tile.GetComponent<Renderer>().sharedMaterial.color;
+    //            if (colorTileDictionary.ContainsKey(tileColor))
+    //            {
+    //                Vector3 tilepos = new Vector3(tile.transform.position.x, colorTileDictionary[tileColor].transform.position.y, tile.transform.position.z);
+    //                int gridPosX = tile.GetComponent<Tile>().GridX;
+    //                int gridPosY = tile.GetComponent<Tile>().GridY;
+    //                DestroyImmediate(tile);
+    //                GameObject Newtile = Instantiate(colorTileDictionary[tileColor], tilepos, Quaternion.identity, this.transform);
+    //                BaseMap[gridPosX, gridPosY] = Newtile;
+    //            }
+    //            else
+    //            {
+    //                Debug.LogError("some tile has wrong color");
+    //            }
+    //        }
+    //    }
+    //}
+
     void BuildLevelWithColorMap()
     {
-        if(BaseMap != null)
+        if (BaseMap != null)
         {
-            foreach (var tile in BaseMap)
+            for (int y = 0; y < BaseMap.GetLength(1); y++)
             {
-                Color tileColor = tile.GetComponent<Renderer>().sharedMaterial.color;
-                if (colorTileDictionary.ContainsKey(tileColor))
+                for (int x = 0; x < BaseMap.GetLength(0); x++)
                 {
-                    Vector3 tilepos = new Vector3(tile.transform.position.x, colorTileDictionary[tileColor].transform.position.y, tile.transform.position.z);
-                    int gridPosX = tile.GetComponent<Tile>().GridX;
-                    int gridPosY = tile.GetComponent<Tile>().GridY;
-                    DestroyImmediate(tile);
-                    GameObject Newtile = Instantiate(colorTileDictionary[tileColor], tilepos, Quaternion.identity, this.transform);
-                    BaseMap[gridPosX, gridPosY] = Newtile;
-                }
-                else
-                {
-                    Debug.LogError("some tile has wrong color");
+                    Color tileColor = BaseMap[x, y].GetComponent<Renderer>().sharedMaterial.color;
+                    if ((colorTileDictionary.ContainsKey(tileColor)))
+                    {
+                        Vector3 tilepos = new Vector3(BaseMap[x, y].transform.position.x, colorTileDictionary[tileColor].transform.position.y, BaseMap[x, y].transform.position.z);
+                        DestroyImmediate(BaseMap[x, y]);
+                        GameObject Newtile = Instantiate(colorTileDictionary[tileColor], tilepos, Quaternion.identity, this.transform);
+                        BaseMap[x, y] = Newtile;
+                    }
                 }
             }
         }
     }
 
     bool dictionaryCheckForNull()
-    {   
-        if(colorTileDictionary.Count == 0)
+    {
+        if (colorTileDictionary.Count == 0)
         {
             return true;
         }
@@ -95,7 +116,12 @@ public class WoodenPuzzleMapCreator : map
                 }
             }
         }
-        
+
         return false;
     }
+
+    //void CreateWallAround(GameObject[,] grid)
+    //{
+    //    grid[0,]
+    //}
 }
